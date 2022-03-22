@@ -8,7 +8,7 @@
       "request": "launch",
       "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
       "args": [],
-      "stopAtEntry": false,
+      "stopAtEntry": false, // 是否停在程序入口点（停在main函数开始）
       "cwd": "${workspaceFolder}",
       "environment": [],
       "externalConsole": false,
