@@ -4,12 +4,12 @@
     {
       "name": "(lldb) 启动",
       "type": "lldb",
-      "preLaunchTask": "build",
+      // "preLaunchTask": "build",
       "request": "launch",
-      "program": "${workspaceFolder}/target/debug/${workspaceFolderBasename}",
+      "program": "${workspaceRoot}/target/debug/${workspaceFolderBasename}",
       "args": [],
       "stopAtEntry": false, // 是否停在程序入口点（停在main函数开始）
-      "cwd": "${workspaceFolder}",
+      "cwd": "${workspaceRoot}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "lldb"
