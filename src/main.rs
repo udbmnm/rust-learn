@@ -7,7 +7,6 @@ fn main() {
     echo::play::doing();
     say();
     let text = "\
-
   Rust is a systems programming language, that is compiled to LLVM.
   It is a compiled language, which means that it is compiled to machine code.
   However, it is not a compiled language, which means that it is not compiled to machine code.
@@ -44,7 +43,7 @@ fn main() {
     println!("a={},c={}", a, c);
     // b = 3; // error: cannot assign to immutable variable `b`
     let d = sum(a, c);
-    println!("d={}", d);
+    println!("a+b={}", d);
     let y = {
         let x = 3;
         x + 1
@@ -65,7 +64,7 @@ fn main() {
 
     {
         // s 在这里无效，它尚未声明
-        let s = "🍉"; // 从此处起，s 是有效的
+        // let s = "🍉"; // 从此处起，s 是有效的
 
         // 使用 s
     } // 此作用域已结束，s不再有效
