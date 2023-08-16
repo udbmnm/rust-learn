@@ -59,3 +59,53 @@ fn main() {
 ```
 * 引用使用&x，`  let y = &x;` 解引用使用 *y
 
+* 可变引用同时只能存在一个
+```
+let mut s = String::from("hello");
+
+let r1 = &mut s;
+let r2 = &mut s;
+
+println!("{}, {}", r1, r2);
+// error[E0499]: cannot borrow `s` as mutable more than once at a time
+// 同一时间无法对 `s` 进行两次可变引用借用
+```
+
+* 可变引用与不可变引用不能同时存在
+```
+let mut s = String::from("hello");
+
+let r1 = &s; // 没问题
+let r2 = &s; // 没问题
+let r3 = &mut s; // 大问题
+
+println!("{}, {}, and {}", r1, r2, r3);
+
+```
+>注意，引用的作用域 s 从创建开始，一直持续到它最后一次使用的地方，这个跟变量的作用域有所不同，变量的作用域从创建持续到某一个花括号 } 结束
+
+如果在上面的代码中声明r3之前 使用 println!("{} and {}", r1, r2) ，那么代码是可以编译通过的，因为r1和r2的作用域在r3之前结束了，所以r3的引用不会发生冲突
+
+
+* 悬垂引用(Dangling References)
+```
+fn main() {
+  let reference_to_nothing = dangle();
+}
+fn dangle() -> &String {
+  let s = String::from("hello");
+  &s
+}
+// error[E0106]: missing lifetime specifier
+// 因为 s 是在 dangle 函数内创建的，当 dangle 的代码执行完毕后，s 将被释放，但是此时我们又尝试去返回它的引用。这意味着这个引用会指向一个无效的 String，如果修改成直接返回  字符串 s，就不会有问题了
+```
+
+* 当你只需要匹配一个条件，且忽略其他条件时就用 if let ，否则都用 match。
+```
+  if let Some(3) = v {
+    println!("three");
+}
+
+```
+
+
